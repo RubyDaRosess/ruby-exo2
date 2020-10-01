@@ -27,13 +27,13 @@ module Journalists
 #Combien commencent par une majuscule (première lettre juste après le @) 
     def self.capitaletter
         puts "quel est le nombre de handle commencant par une majuscule"
-        puts "le nombre de handle commencant par une majuscule est de : #{ARRAY.count {|x| x[1] == x[1].upcase}}"
+        puts "le nombre de handle commencant par une majuscule est de : #{ARRAY.count {|x| x[1] == x[1].upcase if x[1] != "_"}}"
     end
 
 #Trie la liste de handle par ordre alphabétique.
     def self.alphabeticallysort
         puts "\nVoici le array trié par ordre alphabethique\n \n"
-        puts ARRAY.sort {|a, b| a <=> b}
+        puts ARRAY.sort_by {|a| a.upcase}
     end
 
 #Trie la liste de handle par taille des handle (les plus petits en premiers, les plus grands après)
@@ -50,7 +50,6 @@ module Journalists
 #Sors-moi une répartition des handle par taille de ces derniers (nombre de handle avec 1 caractère, nombre de handle avec 2 caractères, nombre de handle avec 3 caractères, etc)
     def self.repartition
         count = 0
-        value_max = 1
         h = {}
         ARRAY.each do |nom|
             count = nom.size
@@ -58,24 +57,21 @@ module Journalists
                 h[count] = 1
             else
                 h[count] += 1
-            end
+            end 
         end
         h.each {|key, value| puts "Il y a #{value} handles qui ont #{key} caractères" }
     end
+
+    def self.start
+        Journalists.length
+        Journalists.min
+        Journalists.five_size
+        Journalists.capitaletter
+        Journalists.alphabeticallysort
+        Journalists.sizesort
+        Journalists.findepenser
+        Journalists.repartition
+        end
+        
+        Journalists.start
 end
-
-
-
-
-
-
-Journalists.length
-Journalists.min
-Journalists.five_size
-Journalists.capitaletter
-Journalists.alphabeticallysort
-Journalists.sizesort
-Journalists.findepenser
-Journalists.repartition
-
-
